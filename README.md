@@ -2,7 +2,7 @@
 - 👀 I’m interested in diversifying with fellow coders and to learn from them.
 - 🌱 I’m currently learning Python
 - 💞️ I’m looking to collaborate on ...
-- 📫 You can reach me on imshravanpandey@gmail.com
+- 📫 You can reach me on shravanpandeyy@proton.me
 
 <!---
 shravan-pandey/shravan-pandey is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
