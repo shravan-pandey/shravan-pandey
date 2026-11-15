@@ -27,7 +27,7 @@ class FormInfo:
 class Page:
     url: str
     status_code: int
-    headers: dict
+    headers: object  # requests.structures.CaseInsensitiveDict — keep case-insensitive lookups
     text: str
     forms: list[FormInfo] = field(default_factory=list)
 
@@ -91,7 +91,11 @@ class Crawler:
 
             content_type = resp.headers.get("Content-Type", "")
             text = resp.text if "text" in content_type or "html" in content_type else ""
-            page = Page(url=norm, status_code=resp.status_code, headers=dict(resp.headers), text=text)
+            # Keep requests' CaseInsensitiveDict as-is (don't flatten to a plain dict):
+            # servers vary in header casing (e.g. "content-security-policy" vs
+            # "Content-Security-Policy"), and a plain dict's case-sensitive lookups
+            # would wrongly report present headers as missing.
+            page = Page(url=norm, status_code=resp.status_code, headers=resp.headers, text=text)
 
             if text:
                 soup = BeautifulSoup(text, "html.parser")
